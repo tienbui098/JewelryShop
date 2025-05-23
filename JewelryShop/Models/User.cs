@@ -10,33 +10,32 @@ namespace JewelryShop.Models
         public int UserId { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập tên đăng nhập")]
-        [StringLength(50)]
+        [Display(Name = "Tên đăng nhập")]
         public string Username { get; set; }
-
-        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
-        [StringLength(100)]
-        public string Password { get; set; }
 
         [Required(ErrorMessage = "Vui lòng nhập email")]
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
+        [Display(Name = "Email")]
         public string Email { get; set; }
 
+        [Required(ErrorMessage = "Vui lòng nhập mật khẩu")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Mật khẩu")]
+        public string Password { get; set; }
+
         [Required(ErrorMessage = "Vui lòng nhập họ tên")]
-        [StringLength(100)]
+        [Display(Name = "Họ tên")]
         public string FullName { get; set; }
 
-        [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
+        [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
 
-        [StringLength(200)]
+        [Display(Name = "Địa chỉ")]
         public string Address { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime? LastLogin { get; set; }
         public bool IsActive { get; set; } = true;
-
-        // Phân quyền: Admin hoặc Customer
-        public string Role { get; set; } = "Customer";
+        public string Role { get; set; } = "User";
 
         // Navigation properties
         public virtual ICollection<Order> Orders { get; set; }
